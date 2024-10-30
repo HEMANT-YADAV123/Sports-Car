@@ -1,0 +1,633 @@
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;/* box sizing fix the size of the logo means including any padding or margin. */
+}
+
+:root
+{
+    --primary: #00c2de;
+}
+
+body
+{
+    background: #000000;
+    font-family: "Racing Sans One", system-ui;
+}
+
+          /* header */
+header
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    z-index: 1000;
+}
+header .logo::after
+{
+    position: absolute;
+    content: '';
+    top: 40%;
+    transform: translateY(-50%);
+    left: 50px;
+    height: 3px;
+    width: 40%;
+    background: linear-gradient(90deg, var(--primary),transparent);
+}
+
+.logo
+{
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.logo img
+{
+    max-width: 200px;
+    filter: invert(1);
+}
+
+header .year
+{
+    font-family: "Racing Sans One", system-ui;
+    font-size: lem;
+    color: #ffffff;
+    letter-spacing: 1px;
+    font-weight: 800;
+    margin-top: 15px;
+}
+
+header .menu
+{
+    position: relative;
+    height: 30px;
+    width: 40px;
+    background: url('../images/menu-3-fill.png') no-repeat;
+    background-size: 30px;
+    background-position: center;
+    filter: invert(1);
+    cursor: pointer;
+}
+header .menu.active
+{
+    position: relative;
+    height: 35px;
+    width: 35px;
+    background: url('../images/close-line.png') no-repeat;
+    background-size: 35px;
+    background-position: center;
+    filter: invert(1);
+    cursor: pointer;
+}
+
+
+/* Navigation */
+.nav 
+{
+    z-index: 200;
+    position: absolute;
+    right: 55px;
+    top: 0;
+    width: 30%;
+    height: 3px;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(90deg,transparent,var(--primary),var(--primary),transparent) 30;
+    background: transparent;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+    transform-origin: right;
+}
+.nav.active
+{
+    top: 60px;
+    width: 36%; 
+    height: 50px;
+    border-top: 3px solid;
+    border-image: linear-gradient(90deg,transparent,var(--primary),var(--primary),transparent) 30;
+    border-bottom: none;
+} 
+
+.nav li
+{
+      position: relative;
+      list-style: none;
+    opacity: 1;/* 0 means transparent -> 1 means opaque */
+    visibility: hidden;
+    transform: translateY(-100px);  
+    transition: 0.5s;
+}
+
+.nav.active li
+{
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+}
+ 
+.nav li a
+{
+    text-decoration: none;
+    display: inline-flex;
+    align-content: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: lighter;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 15px;
+    transition: 0.2s;
+    cursor: pointer; 
+}
+
+.nav li a:hover
+{
+    box-shadow:  inset 0 0 20px rgba(0, 194, 222, 0.5);
+}
+
+/* Banner */
+
+.banner
+{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.banner::after
+{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        rgba(0,0,0,0.1),
+        rgba(0,0,0,0.3),
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.9),
+    );
+}
+
+.banner::before
+{
+    position: absolute;
+    content: '';
+    top: 25%;
+    left: 0;
+    width: 3px;
+    height: 40%;
+    background: linear-gradient(var(--primary),var(--primary),transparent);
+    z-index: 100;
+}
+
+/* Background video */
+
+.banner .bg-video
+{
+    display: none;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.banner .bg-video.active
+{
+    display: block;
+}
+
+/* Banner Content */
+.banner .content
+{
+    position: absolute;
+    top: 50%;
+    left: 4%; /* Move this value to adjust how far left you want */
+    transform: translateY(-50%);
+    max-width: 450px;
+    z-index: 100;
+    padding-bottom: 80px;
+}
+
+.banner .content h1
+{
+    font-family: "Racing Sans One", system-ui,cursive;
+    font-size: 100px;
+    color: #ffffff;
+    font-weight: 500;
+    line-height: 2cm;
+    letter-spacing: 5px;
+}
+.banner .content .model
+{
+    font-size: 30px;
+    text-transform: uppercase;
+    color: var(--primary);
+    display: none;  
+}
+.banner .content .model.active
+{
+    display: block;
+}
+
+.banner .content p
+{
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+.banner .content a
+{
+    position: relative;
+    width: 200px;
+    top: 5%;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 17px;
+    background: transparent;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(
+        90deg,
+        transparent,
+        var(--primary),
+        var(--primary),
+        transparent
+    )
+    30;
+    box-shadow: inset 0 0 10px rgba(0, 194, 222, 0.5);
+    backdrop-filter: blur(20px);
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+
+.banner .content a:hover
+{
+    box-shadow: inset 0 0 30px rgba(0, 194, 222, 0.5);
+}
+
+/* Screen */
+.banner .screen
+{
+    position: absolute;
+    right: 10%;
+    bottom: 100px;
+    width: 150px;
+    height: 100px;
+    transform-style: preserve-3d;
+    animation: animate 30s linear infinite;
+    z-index: 100;
+}
+
+/* rotate from 0deg to 360deg one round */
+@keyframes animate
+{
+    0%{
+        transform: rotateX(-30deg) rotateY(0deg) /* 0% -> rotateY(0deg)*/
+    }
+    100%{
+        transform: rotateX(-30deg) rotateY(360deg); /* 100% -> rotateY(360deg)*/
+    }
+}
+
+.screen div
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.screen div span
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(transparent, var(--primary));
+    transform: rotateY(calc(90deg * var(--i))) translateZ(75px);
+    /* 300px(width)/2 = 150px */
+}
+
+.shadow
+{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 100px;
+    background: var(--primary);
+    transform: rotateX(-90deg) translateZ(75px);
+    filter: blur(20px);
+    box-shadow: 0 0 120px rgba(0, 194, 222, 0.2),
+    0 0 120px rgba(0, 194, 222, 0.4),
+    0 0 120px rgba(0, 194, 222, 0.6),
+    0 0 120px rgba(0, 194, 222, 0.8),
+    0 0 120px rgba(0, 194, 222, 1)
+}
+
+/* Screen Video */
+
+.screen div span video
+{
+    position: absolute;
+    bottom: 0;
+    height: 75%;
+    width: 100%;
+    transition: 0.5s;
+    object-fit: cover;
+    object-position: center;
+}
+.trailer
+{
+    display: none;
+}
+.trailer.active
+{
+    display: block;
+}
+
+/* Banner Gallery */
+.banner .gallery 
+{
+    position: absolute;
+    content: '';
+    left: 100px;
+    bottom: 0px;
+    width: 55%;
+    height: 30%;
+    z-index: 100;
+    background: transparent;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.5),
+        0px -10px 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banner .gallery::before
+{
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    height: 10px;
+    width: 100%;
+    background: var(--primary);
+    filter: blur(20px);
+}
+.banner .gallery .carousel
+{
+    width: 100%;
+    height: 100%;
+}
+.carousel .carousel-item
+{
+    width: 200px;
+    cursor: pointer;
+}
+
+.carousel .carousel-item img
+{
+    border-radius: 20px;
+    object-fit: cover;
+    object-position: center;
+}
+.carousel .carousel-item h4
+{
+    text-align: center;
+    color: var(--primary);
+    font-size: 1.3em;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+/* Social Media Icons */
+.sci
+{
+    position: absolute;
+    top: 50%;
+    right: 70px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.sci li
+{
+    list-style: none;
+}
+.sci li a
+{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.2em;
+    transition: 0.3s;
+}
+
+.sci li a:hover
+{
+    color: var(--primary);
+}
+/* <!-- Video Play Pause Button--> */
+.banner .play,
+.banner .pause
+{
+    display: none;
+    position: absolute;
+    left: 70%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary);
+    font-size: 8em;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0.3;
+    transition: 0.3s;
+}
+.banner .play:hover,
+.banner .pause:hover
+{
+    color: #ffffff;
+    opacity: 1;
+}
+.banner .play.active
+{
+    display: block;
+}
+.banner .pause.active
+{
+    display: block;
+}
+
+/* Responsive Design */
+
+/* @media (max-width: 600px)
+{
+    header{
+        padding: 20px 50px ;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+    header::after{
+        left: 50%;
+        transform: translate(-50% , -50%);
+        background: var(--primary);
+    }
+    .logo{
+        margin-top: 10px;
+        margin-right: 70px;
+    }
+    header .menu{
+        margin-right: 70px;
+    }
+    header .year{
+        padding-right: 90px;
+    }
+    .nav{
+        right: 0;
+        width: 100%;
+    }
+    .nav.active{
+        right: 0;
+        top: 0;
+        padding-right: 50px;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column; */
+        /* border: none; */
+    /* }
+    .banner {
+        padding: 50px 30px 100px;
+    }
+    .banner .content{
+        margin-top: 200px;
+        position: relative;
+        padding: 50px 0 100px;
+    }
+    .banner .content h1{
+        font-size: 40px;
+    }
+
+    .banner .content .model{
+        font-size: 20px;
+    }
+
+    .banner .content a{
+        padding: 10px 40px;
+    }
+    .banner .screen{
+       display: none; 
+    }
+    .banner .gallery{
+        width: 100%;
+        left: 0;
+        height: 320px;
+    }
+    .sci {
+        right: 33%;
+    }
+} */
+
+/* by chat gpt */
+@media (max-width: 600px)
+{
+    header{
+        padding: 15px 30px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+    }
+    header::after{
+        left: 50%;
+        transform: translate(-50% , -50%);
+        background: var(--primary);
+    }
+    .logo{
+        margin-top: 5px;
+        margin-right: 50px;
+    }
+    header .menu{
+        margin-right: 50px;
+    }
+    header .year{
+        padding-right: 50px;
+        font-size: 12px;
+    }
+    .nav{
+        right: 0;
+        width: 100%;
+    }
+    .nav.active{
+        right: 0;
+        top: 0;
+        padding-right: 20px;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .banner {
+        padding: 20px 15px;
+    }
+    .banner .content{
+        margin-top: 150px;
+        position: relative;
+        padding: 30px 0;
+    }
+    .banner .content h1{
+        font-size: 35px;
+    }
+    .banner .content .model{
+        font-size: 18px;
+    }
+    .banner .content a{
+        padding: 8px 20px;
+    }
+    .banner .screen{
+       display: none; 
+    }
+    .banner .gallery{
+        width: 100%;
+        left: 0;
+        height: 250px;
+    }
+    .sci {
+        right: 30%;
+        font-size: 1em;
+    }
+}
